@@ -10,6 +10,11 @@ python = "^3.9"
 llama-index = "^0.8.37"
 llama-cpp-python = "^0.2.11"
 load-dotenv = "^0.1.0"
+pillow = "^10.0.1"
+transformers = "^4.33.3"
+torch = "^2.0.1"
+torchvision = "^0.15.2"
+openai = "^0.28.1"
 
 
 [build-system]
