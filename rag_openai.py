@@ -1,7 +1,7 @@
 
 from llama_index.llms import OpenAI
 from llama_index.prompts import PromptTemplate
-
+import json
 from llama_index import SummaryIndex, SimpleDirectoryReader
 from dotenv import load_dotenv
 load_dotenv()
@@ -47,17 +47,27 @@ Context information is below.
 ---------------------
 {context_str}
 ---------------------
-Given the context information and not prior knowledge, propose an action based on your previous memories.
+Given the context information and not prior knowledge, answer the query.
 Query: {query_str}
 Answer: \
 """
 )
 
-
-query_str = "What should I do for fire prevention?"
-
-
+qa_data ={}
+query_str = "What should I do if I encounter a fire?"
 
 retrieved_nodes = retriever.retrieve(query_str)
 response, fmt_qa_prompt = generate_response_text(retrieved_nodes, query_str, qa_prompt, llm)
-print(response)
+print(f'Question:{query_str}')
+print(f'Response:{response}')
+qa_data[query_str] = response
+
+query_str = "What should I do if I want to prevent fire?"
+retrieved_nodes = retriever.retrieve(query_str)
+response, fmt_qa_prompt = generate_response_text(retrieved_nodes, query_str, qa_prompt, llm)
+print(f'Question:{query_str}')
+print(f'Response:{response}')
+qa_data[query_str] = response
+
+with open('data/qa_data.json', 'w') as file:
+    json.dump(qa_data, file, indent=4)
