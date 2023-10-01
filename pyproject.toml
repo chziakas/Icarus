@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "modal-agent"
+version = "0.1.0"
+description = ""
+authors = ["Christos <chziakas@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+llama-index = "^0.8.37"
+llama-cpp-python = "^0.2.11"
+load-dotenv = "^0.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
